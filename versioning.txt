@@ -1,0 +1,1 @@
+v1 - taumin=-1, taumax=3, regularizebins 1,1,9 for both muplus and muminus, kregmodecurvature, kEConstraintArea

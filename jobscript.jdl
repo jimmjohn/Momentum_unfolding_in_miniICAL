@@ -1,0 +1,42 @@
+initialdir = .
+Universe   = vanilla
+notify_user = jimmjohn007@gmail.com
+
+Log        = condorOutput/jobraj_$(Cluster).$(Process).log
+Output     = condorOutput/jobraj_$(Cluster).$(Process).out
+Error      = condorOutput/jobraj_$(Cluster).$(Process).err
+
+requirements =  TARGET.Machine=="simclu-wn01.ino.tifr.res.in" || TARGET.Machine=="simclu-wn02.ino.tifr.res.in" || TARGET.Machine=="simclu-wn03.ino.tifr.res.in"
+
+request_memory = max({2000, Target.TotalSlotMemory})
+
+
+Executable = raj_jobwrapper.sh
+
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+transfer_input_files = unfolding_mom_v7_density, response_matrix_new, env.sh
+
+transfer_output_files = fileOut
+
+
+queue arguments from (
+107 Mc_v107_2018_Data_Magnetic_fiducial.root 0 5
+108 Mc_v108_2018_Data_Magnetic_fiducial.root 0 5
+109 Mc_v109_2018_Data_Magnetic_fiducial.root 0 5
+110 Mc_v110_2018_Data_Magnetic_fiducial.root 0 5
+111 Mc_v111_2018_Data_Magnetic_fiducial.root 0 5
+112 Mc_v112_2018_Data_Magnetic_fiducial.root 0 5
+113 Mc_v113_2018_Data_Magnetic_fiducial.root 0 5
+114 Mc_v114_2018_Data_Magnetic_fiducial.root 0 5
+107 Mc_v107_2018_Data_Magnetic_fiducial.root 1 5
+108 Mc_v108_2018_Data_Magnetic_fiducial.root 1 5
+109 Mc_v109_0_359_2018_Data_Magnetic_fiducial.root 1 5 
+110 Mc_v110_2018_Data_Magnetic_fiducial.root 1 5
+111 Mc_v111_2018_Data_Magnetic_fiducial.root 1 5
+112 Mc_v112_2018_Data_Magnetic_fiducial.root 1 5
+113 Mc_v113_2018_Data_Magnetic_fiducial.root 1 5
+114 Mc_v114_2018_Data_Magnetic_fiducial.root 1 5
+)
